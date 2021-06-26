@@ -64,12 +64,11 @@ export default function BreezoMap() {
 
 
     return (
-        <div>
-            {/*<div className="sidebar">*/}
-            {/*    Longitude: {lng} | Latitude: {lat} | Zoom: {zoom}*/}
-            {/*</div>*/}
+        <div id="mapOuter">
+            <div className="sidebar">
+                Longitude: {lng} | Latitude: {lat} | Zoom: {zoom}
+            </div>
             <div ref={mapContainer} className="map-container" />
-
         </div>
     );
 }
