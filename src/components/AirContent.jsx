@@ -3,13 +3,21 @@ import { TableContainer, Paper, TableCell, TableRow } from "@material-ui/core";
 
 const AirContent = ({ latitude, longitude }) => {
   const [pollutants, SetPollut] = React.useState();
+  const [err, SetErr] = React.useState();
   const key = "ce9769b505314d7ba636addc9370870f";
   const url = `https://api.breezometer.com/air-quality/v2/current-conditions?lat=${latitude}&lon=${longitude}&key=${key}&features=breezometer_aqi,local_aqi,health_recommendations,sources_and_effects,pollutants_concentrations,pollutants_aqi_information`;
   const GetData = async () => {
     const response = await fetch(url);
     const data = await response.json();
     console.log(data);
-    if (data.data !== null) SetPollut(data.data.pollutants);
+    if (data.data) {
+      SetPollut(data.data.pollutants);
+      SetErr(null)
+    }
+    if(data.error) {
+      SetErr(data.error);
+      SetPollut(null)
+    }
   };
   React.useEffect(() => {
     GetData();
@@ -56,7 +64,12 @@ const AirContent = ({ latitude, longitude }) => {
             <TableCell>{pollutants.so2.concentration.value}{"  "}{pollutants.so2.concentration.units}</TableCell>
           </TableRow>
         </TableContainer>
-      )}
+       
+      )} {
+          err && <div>
+          {err.title} 
+          </div>
+        }
     </div>
   );
 };
