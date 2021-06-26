@@ -1,5 +1,4 @@
 import React from 'react'
-//import Blah from '../components/blah'
 import MapComponent  from '../components/map';
 import BreezoMap from '../components/breezMap';
 const MainPage = () =>
