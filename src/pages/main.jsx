@@ -1,17 +1,21 @@
 import React from 'react'
+//import Blah from '../components/blah'
+import MapComponent  from '../components/map';
 
-//Fetching Data with Custom Hook
-    import useFetch from "react-fetch-hook"
-
-
-const Main = () => {
-    const {data} = useFetch("http://maps.openweathermap.org/maps/2.0/weather/TA2/10/-41.36384/114.57899?appid=363bb53f013659562bdd24040513481f");
-    console.log(data);
+const MainPage = () =>
+{
+    // const [ coords, SetCoords ] = React.useState( {} )
+    // navigator.geolocation.getCurrentPosition( position =>
+    // {
+    //     SetCoords( position.coords )
+    // } );
 
     return (
         <div>
-            <p>{data}</p>
+            {/* <Blah latitude={ coords.latitude } longitude={ coords.longitude } /> */ }
+            <MapComponent></MapComponent>
         </div>
+        
     )
 }
-export default Main;
+export default MainPage;
