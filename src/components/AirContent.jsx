@@ -1,5 +1,5 @@
 import React from "react";
-import {TableContainer, Paper, TableCell, TableRow} from "@material-ui/core";
+import { TableContainer, Paper, TableCell, TableRow } from "@material-ui/core";
 
 const AirContent = ({ latitude, longitude }) => {
   const [pollutants, SetPollut] = React.useState();
@@ -12,11 +12,11 @@ const AirContent = ({ latitude, longitude }) => {
     console.log(data);
     if (data.data) {
       SetPollut(data.data.pollutants);
-      SetErr(null)
+      SetErr(null);
     }
-    if(data.error) {
+    if (data.error) {
       SetErr(data.error);
-      SetPollut(null)
+      SetPollut(null);
     }
   };
   React.useEffect(() => {
@@ -28,50 +28,82 @@ const AirContent = ({ latitude, longitude }) => {
       {pollutants && (
         <TableContainer component={Paper}>
           <TableRow>
-            <TableCell>
-              {pollutants.co.full_name}<div>({pollutants.co.display_name})</div>
-            </TableCell>
-            <TableCell>
-              {pollutants.no.full_name} <div>({pollutants.no.display_name})</div> 
-            </TableCell>
-            <TableCell>
-              {pollutants.no2.full_name}<div>({pollutants.no2.display_name})</div>
-            </TableCell>
-            <TableCell>
-              {pollutants.pm10.full_name}<div>({pollutants.pm10.display_name})</div>
-            </TableCell>
-            <TableCell>
-              {pollutants.pm25.full_name}<div>({pollutants.pm25.display_name})</div>
-            </TableCell>
-            <TableCell>{pollutants.so2.full_name}<div>{pollutants.so2.display_name}</div></TableCell>
+            {pollutants.co && (
+              <TableCell>
+                {pollutants.co.full_name}
+                <div>({pollutants.co.display_name})</div>
+              </TableCell>
+            )}
+            {pollutants.no && (
+              <TableCell>
+                {pollutants.no.full_name}{" "}
+                <div>({pollutants.no.display_name})</div>
+              </TableCell>
+            )}
+            {pollutants.no2 && (
+              <TableCell>
+                {pollutants.no2.full_name}
+                <div>({pollutants.no2.display_name})</div>
+              </TableCell>
+            )}
+            {pollutants.pm10 && (
+              <TableCell>
+                {pollutants.pm10.full_name}
+                <div>({pollutants.pm10.display_name})</div>
+              </TableCell>
+            )}
+            {pollutants.pm25 && (
+              <TableCell>
+                {pollutants.pm25.full_name}
+                <div>({pollutants.pm25.display_name})</div>
+              </TableCell>
+            )}
+            {pollutants.so2 && (
+              <TableCell>
+                {pollutants.so2.full_name}
+                <div>{pollutants.so2.display_name}</div>
+              </TableCell>
+            )}
           </TableRow>
           <TableRow>
+            {pollutants.co.concentration.value && (
+              <TableCell>
+                {pollutants.co.concentration.value}
+                {pollutants.co.concentration.units}
+              </TableCell>
+            )}
+            {pollutants.no && (
+              <TableCell>
+                {pollutants.no.concentration.value}
+                {"  "}
+                {pollutants.no.concentration.units}
+              </TableCell>
+            )}
             <TableCell>
-              {pollutants.co.concentration.value}{"  "}{pollutants.co.concentration.units}
+              {pollutants.no2.concentration.value}
+              {"  "}
+              {pollutants.no2.concentration.units}
             </TableCell>
             <TableCell>
-              {pollutants.no.concentration.value}{"  "}{pollutants.no.concentration.units} 
+              {pollutants.pm10.concentration.value}
+              {"  "}
+              {pollutants.pm10.concentration.units}
             </TableCell>
             <TableCell>
-              {pollutants.no2.concentration.value}{"  "}{pollutants.no2.concentration.units}
+              {pollutants.pm25.concentration.value}
+              {"  "}
+              {pollutants.pm25.concentration.units}
             </TableCell>
             <TableCell>
-              {pollutants.pm10.concentration.value}{"  "}{pollutants.pm10.concentration.units}
+              {pollutants.so2.concentration.value}
+              {"  "}
+              {pollutants.so2.concentration.units}
             </TableCell>
-            <TableCell>
-              {pollutants.pm25.concentration.value}{"  "}{pollutants.pm25.concentration.units}
-            </TableCell>
-            <TableCell>{pollutants.so2.concentration.value}{"  "}{pollutants.so2.concentration.units}</TableCell>
           </TableRow>
         </TableContainer>
-       
-      )} {
-          err && <div>
-          {err.title} 
-          </div>
-        }
+      )}{" "}
+      {err && <div>{err.title}</div>}
     </div>
   );
-
 };
 export default AirContent;

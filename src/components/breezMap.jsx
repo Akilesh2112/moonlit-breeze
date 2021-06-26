@@ -1,6 +1,8 @@
 import React, { useRef, useEffect, useState } from 'react';
 import mapboxgl from 'mapbox-gl';
 import AirContent from './AirContent'
+import { Fab } from "@material-ui/core";
+import MyLocationRoundedIcon from "@material-ui/icons/MyLocationRounded";
 import './component.css'
 import MapboxGeocoder from '@mapbox/mapbox-gl-geocoder'
 import '@mapbox/mapbox-gl-geocoder/dist/mapbox-gl-geocoder.css';
@@ -93,14 +95,29 @@ export default function BreezoMap ()
     }
 
 
-    return (
-        <div id="mapOuter">
-            <div className="sidebar">
-                Longitude: { lng } | Latitude: { lat } | Zoom: { zoom }
-            </div>
-            <div ref={ mapContainer } className="map-container" />
-            <img src='https://docs.breezometer.com/api-documentation/assets/img/indiper_color_palette.2cb158e6.png/' />
-            <AirContent latitude={ lat } longitude={ lng } />
-        </div>
-    );
+
+  return (
+    <div id="mapOuter">
+      <div className="sidebar">
+        Longitude: {lng} | Latitude: {lat} | Zoom: {zoom}
+      </div>
+      <div ref={mapContainer} className="map-container" />
+      <img
+        src="https://docs.breezometer.com/api-documentation/assets/img/indiper_color_palette.2cb158e6.png/"
+        alt=""
+      />
+      <Fab
+      color="primary"
+        onClick={() => {
+          navigator.geolocation.getCurrentPosition((position) => {
+            setLat(position.coords.latitude);
+            setLng(position.coords.longitude)
+          });
+        }}
+      >
+        <MyLocationRoundedIcon />
+      </Fab>
+      <AirContent latitude={lat} longitude={lng} />
+    </div>
+  );
 }
