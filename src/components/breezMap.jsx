@@ -79,6 +79,7 @@ export default function BreezoMap() {
                 Longitude: {lng} | Latitude: {lat} | Zoom: {zoom}
             </div>
             <div ref={mapContainer} className="map-container" />
+            <img src='https://docs.breezometer.com/api-documentation/assets/img/indiper_color_palette.2cb158e6.png/' />
             <AirContent latitude={lat} longitude={lng}/>
         </div>
     );
