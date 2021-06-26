@@ -1,6 +1,6 @@
 import React from 'react'
 import MapComponent  from '../components/map';
-
+import BreezoMap from '../components/breezMap';
 const MainPage = () =>
 {
     // const [ coords, SetCoords ] = React.useState( {} )
@@ -11,7 +11,8 @@ const MainPage = () =>
 
     return (
         <div>
-            <MapComponent></MapComponent>
+            {/* <Blah latitude={ coords.latitude } longitude={ coords.longitude } /> */ }
+            <BreezoMap></BreezoMap>
         </div>
         
     )
