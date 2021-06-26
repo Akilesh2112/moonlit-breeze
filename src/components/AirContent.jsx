@@ -1,7 +1,7 @@
 import React from "react";
 import { TableContainer, Paper, TableCell, TableRow } from "@material-ui/core";
 
-const Blah = ({ latitude, longitude }) => {
+const AirContent = ({ latitude, longitude }) => {
   const [pollutants, SetPollut] = React.useState();
   const [input, SetInput] = React.useState();
   const key = "ce9769b505314d7ba636addc9370870f";
@@ -47,4 +47,4 @@ const Blah = ({ latitude, longitude }) => {
     </div>
   );
 };
-export default Blah;
+export default AirContent;

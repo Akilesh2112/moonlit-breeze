@@ -1,6 +1,6 @@
 import React, { useRef, useEffect, useState } from 'react';
 import mapboxgl from 'mapbox-gl';
-import Blah from './blah'
+import AirContent from './AirContent'
 import './component.css'
 
 
@@ -70,7 +70,7 @@ export default function BreezoMap() {
                 Longitude: {lng} | Latitude: {lat} | Zoom: {zoom}
             </div>
             <div ref={mapContainer} className="map-container" />
-            <Blah latitude={lat} longitude={lng}/>
+            <AirContent latitude={lat} longitude={lng}/>
         </div>
     );
 }
