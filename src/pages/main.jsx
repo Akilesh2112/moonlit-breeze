@@ -1,15 +1,15 @@
 import React from 'react'
-
-//Fetching Data with Custom Hook
-    import useFetch from "react-fetch-hook"
-
+import {Blah} from '../components/blah'
 
 const Main = () => {
-    const {data} = useFetch("https://randomuser.me/api/");
-    console.log(data);
+    const[coords,SetCoords] = React.useState({})
+    navigator.geolocation.getCurrentPosition(position => {
+    SetCoords(position.coords)
+});
 
     return (
-        <div>
+        <div> 
+        <Blah latitude={coords.latitude} longitude={coords.longitude}/>
         </div>
     )
 }
